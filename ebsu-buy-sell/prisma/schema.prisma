@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id // Matches Clerk's userId
+  email     String   @unique
+  name      String?
+  phone     String? // For contact info
+  location  String? // For location-based filtering
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  products  Product[]
+  services  Service[]
+  jobs      Job[]
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  price       Float
+  condition   String // "new" or "used"
+  imageUrl    String
+  location    String
+  contact     String
+  category    String
+  createdAt   DateTime @default(now())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  rate        Float
+  contact     String
+  category    String
+  createdAt   DateTime @default(now())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Job {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  requirements String
+  company     String
+  contact     String
+  category    String
+  createdAt   DateTime @default(now())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+}
