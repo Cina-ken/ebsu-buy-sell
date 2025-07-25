@@ -1,10 +1,12 @@
+
+
 import './globals.css';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 
 export const metadata = {
   title: 'EBSU Buy & Sell',
-  description: 'A vibrant marketplace.',
+  description: 'A vibrant marketplace. ',
 };
 
 export default function RootLayout({

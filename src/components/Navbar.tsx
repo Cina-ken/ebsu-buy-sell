@@ -8,7 +8,7 @@ export function Navbar() {
           <a href="/marketplace" className="text-white hover:underline">Marketplace</a>
           <a href="/services" className="text-white hover:underline">Services</a>
           <a href="/jobs" className="text-white hover:underline">Jobs</a>
-          <a href="/post" className="text-white hover:underline">Post</a>
+          <a href="/sell" className="text-white hover:underline">Sell</a>
           <a href="/contact" className="text-white hover:underline">Contact</a>
         </div>
       </div>

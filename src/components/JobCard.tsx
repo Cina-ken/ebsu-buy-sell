@@ -1,4 +1,4 @@
-export function JonCard() {
+export function JobtCard() {
   return (
     <div className="border rounded-lg p-4">
       <h2 className="text-lg font-semibold">Job Placeholder</h2>

@@ -8,11 +8,11 @@ datasource db {
 }
 
 model User {
-  id        String   @id // Matches Clerk's userId
+  id        String   @id
   email     String   @unique
   name      String?
-  phone     String? // For contact info
-  location  String? // For location-based filtering
+  phone     String?
+  location  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   products  Product[]
@@ -25,7 +25,7 @@ model Product {
   title       String
   description String
   price       Float
-  condition   String // "new" or "used"
+  condition   String
   imageUrl    String
   location    String
   contact     String
