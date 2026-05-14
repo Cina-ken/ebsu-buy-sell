@@ -7,29 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id
-  email     String   @unique
-  name      String?
-  phone     String?
-  location  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  products  Product[]
-  services  Service[]
-  jobs      Job[]
-}
-
 model Product {
   id          String   @id @default(cuid())
   title       String
   description String
   price       Float
-  condition   String
-  imageUrl    String
+  condition   String   @default("new")
+  imageUrl    String?
   location    String
   contact     String
   category    String
+  subcategory String
   createdAt   DateTime @default(now())
   userId      String
   user        User     @relation(fields: [userId], references: [id])
@@ -42,6 +30,7 @@ model Service {
   rate        Float
   contact     String
   category    String
+  subcategory String
   createdAt   DateTime @default(now())
   userId      String
   user        User     @relation(fields: [userId], references: [id])
@@ -55,7 +44,18 @@ model Job {
   company     String
   contact     String
   category    String
+  subcategory String
   createdAt   DateTime @default(now())
   userId      String
   user        User     @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  name        String?
+  createdAt   DateTime @default(now())
+  posts       Product[]
+  services    Service[]
+  jobs        Job[]
 }
