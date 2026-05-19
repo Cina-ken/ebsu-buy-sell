@@ -2,8 +2,25 @@ import prisma from '@/lib/prisma';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const product = await prisma.product.findUnique({ where: { id } });
+  if (!product) return {};
+  return {
+    title: `${product.title} — ₦${product.price.toLocaleString()} | EBSU Buy & Sell`,
+    description: product.description.slice(0, 155),
+    openGraph: {
+      title: product.title,
+      description: product.description.slice(0, 155),
+      images: product.imageUrl ? [product.imageUrl] : [],
+    },
+  };
+}
+
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

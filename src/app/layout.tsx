@@ -5,9 +5,14 @@ import { Footer } from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 
 export const metadata = {
-  title: 'EBSU Buy & Sell',
-  description: 'A vibrant marketplace for the EBSU community.',
+  title: { default: 'EBSU Buy & Sell', template: '%s | EBSU Buy & Sell' },
+  description: 'Buy, sell, find services and jobs in the EBSU community marketplace.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://ebsu-buy-sell.vercel.app'),
+  openGraph: { siteName: 'EBSU Buy & Sell', type: 'website', locale: 'en_NG' },
+  twitter: { card: 'summary_large_image' },
 };
+
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
